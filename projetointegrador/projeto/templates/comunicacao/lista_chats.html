@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Chats</title>
+</head>
+<body>
+    <h2>Lista de Chats</h2>
+    
+    <ul>
+        {% for chat in chats %}
+            <li>{{ chat }}</li>
+        {% empty %}
+            <li>Nenhum chat disponível.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

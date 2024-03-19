@@ -1,0 +1,19 @@
+{% extends 'comunicacao/base.html' %}
+{% block title %}Chat {{ chat.id }}{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Chat {{ chat.id }} - {{ chat.data_criacao }}</h2>
+    <div class="messages">
+        {% for mensagem in mensagens %}
+        <div class="message">
+            <strong>{{ mensagem.remetente.username }}:</strong> {{ mensagem.texto }}
+        </div>
+        {% endfor %}
+    </div>
+    <form method="post" action="{% url 'projeto:visualizar_chat' chat_id=chat.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enviar Mensagem</button>
+    </form>
+</div>
+{% endblock %}

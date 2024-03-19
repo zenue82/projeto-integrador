@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Colegio MT{% endblock %}</title>
+    
+
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Colegio MT</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'projeto:pagina_inicial' %}">Página Inicial</a></li>
+            <li><a href="{% url 'projeto:lista_chats' %}">Lista de Chats</a></li>
+            <!-- Adicione mais links de navegação conforme necessário -->
+            <li>
+                {% if user.is_authenticated %}
+                    <form id="logout-form" action="{% url 'projeto:logout' %}" method="post" style="display: none;">
+                        {% csrf_token %}
+                    </form>
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                {% else %}
+                    <a href="{% url 'projeto:login' %}">Login</a>
+                {% endif %}
+            </li>
+            
+        </ul>
+    </nav>
+
+    <main>
+        <!-- O conteúdo específico de cada página será incluído aqui usando o bloco 'content' -->
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>Rodapé do Site &copy; {{ year }}</p>
+    </footer>
+
+    <!-- Adicione seus scripts JS, etc., aqui -->
+
+</body>
+</html>
